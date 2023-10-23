@@ -1,17 +1,19 @@
-#include "mesh_Client.h"
 #include "board.h"
+#include "mesh_Client.h"
+
+
+Scheduler myScheduler; // External Schedules -- in all other headerfiles
 
 void setup()
 {
 
   setupBoard();
-  setupMesh();
 
+
+  setupMesh(&myScheduler);
 }
 
 void loop()
 {
-
-  // it will run the user scheduler as well
-  mesh.update();
+  updateMesh();
 }

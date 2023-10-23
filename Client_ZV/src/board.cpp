@@ -1,7 +1,7 @@
 #include "board.h"
 #include <Arduino.h>
-bool LED_state = false;
 
+//Scheduler boardSheduler;
 
 void setupBoard(){
 
@@ -11,4 +11,8 @@ void setupBoard(){
 };
 
 
+void BlinkOnRX(){
 
+
+  delay(1);
+}
