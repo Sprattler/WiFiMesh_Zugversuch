@@ -3,7 +3,7 @@
 
 //Scheduler boardSheduler;
 
-void setupBoard(){
+void setupBoard(Scheduler *myScheduler){
 
   Serial.begin(115200);
 

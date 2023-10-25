@@ -1,9 +1,9 @@
 #pragma once
 #include "Arduino.h"
-//#include "TaskScheduler.h"
+#include "mesh_Client.h"
 
 
-void setupBoard();
+void setupBoard(Scheduler *myScheduler);
 void BlinkOnRX();
 
 

@@ -7,7 +7,7 @@ Scheduler myScheduler; // External Schedules -- in all other headerfiles
 void setup()
 {
 
-  setupBoard();
+  setupBoard(&myScheduler);
 
 
   setupMesh(&myScheduler);
