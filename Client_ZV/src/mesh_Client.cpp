@@ -23,7 +23,7 @@ void setupMesh(Scheduler *myScheduler)
     mesh.setName(nodeName);
 
     mesh.onReceive([](String &from, String &msg)
-                   { Serial.printf("Client-RX: %s, %s\n", from.c_str(), msg.c_str()); BlinkOnRX();});
+                   { Serial.printf("Client-RX: %s, %s\n", from.c_str(), msg.c_str());});
 
     mesh.onChangedConnections([]()
                               { Serial.printf("Changed connection\n"); });

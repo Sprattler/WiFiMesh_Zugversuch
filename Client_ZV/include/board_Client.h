@@ -4,7 +4,5 @@
 
 
 void setupBoard(Scheduler *myScheduler);
-void BlinkOnRX();
-
 
 
