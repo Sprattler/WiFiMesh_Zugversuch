@@ -55,6 +55,10 @@ This file prototypes the SCL3300 class, as implemented in SCL3300.cpp
 #define SCL3300_SPI_MODE SPI_MODE0
 #endif
 
+//Select Board
+
+#define WHOAMIID 0xe0
+
 //Define allowed commands to SCL3300 inclinometer
 #define RdAccX		0x040000f7
 #define RdAccY		0x080000fd

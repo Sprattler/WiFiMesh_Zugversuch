@@ -78,7 +78,7 @@ boolean SCL3300::begin(void) {
   if (crcerr || statuserr) return false;
   // Once everything is initialized, return a known expected value
   // The WHOAMI command should give an 8 bit value of 0xc1
-  return (SCL3300_DATA == 0xc1); //Let the caller know if this worked
+  return (SCL3300_DATA == WHOAMIID); //Let the caller know if this worked
 }
 
 // Set up the SPI communication with the SCL3300 with provided Chip Select pin number, and provided SPI port
@@ -107,7 +107,7 @@ boolean SCL3300::isConnected() {
   if (crcerr || statuserr) return false;
   // Once everything is initialized, return a known expected value
   // The WHOAMI command should give an 8 bit value of 0xc1
-  return (SCL3300_DATA == 0xc1); //Let the caller know if this worked
+  return (SCL3300_DATA == WHOAMIID); //Let the caller know if this worked
 }
 
 //Read all the sensor data together to keep it consistent
@@ -153,7 +153,7 @@ boolean SCL3300::available(void) {
   if (!setFastRead) endTransmission(); //Let go of SPI port/bus
   if (errorflag) return false; //Inform caller that something went wrong
   // The WHOAMI command should give an 8 bit value of 0xc1
-  return (SCL3300_DATA == 0xc1); //Let the caller know this worked
+  return (SCL3300_DATA == WHOAMIID); //Let the caller know this worked
 }
 
 /* Set SCL3300 library into Fast Read Mode
@@ -451,9 +451,11 @@ unsigned long SCL3300::transfer(unsigned long value) {
     crcerr = true;
   //check RS bits
   if ((SCL3300_CMD & 0x03) == 0x01)
-    statuserr = false;
+    {statuserr = false;
+      //Serial.printf("\n------%d-----\n",SCL3300_CMD);
+      }
   else
-    statuserr = true;
+    {statuserr = true;}
   #ifdef debug_scl3300
   Serial_SCL.print((SCL3300_CMD & 0x03));
   Serial_SCL.print(" ");
