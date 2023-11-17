@@ -1,14 +1,13 @@
 
 
-/* Read Tilt angles from Murata SCL3300 Inclinometer
- * Version 3.2.0 - September 3, 2021
- * Example1_BasicTiltLevelOffset
+/* Read Tilt angles from Murata SCL3400 Inclinometer
+
 */
 
 #include <SPI.h>
-#include <SCL3300.h>
+#include <SCL3400.h>
 
-SCL3300 inclinometer;
+SCL3400 inclinometer;
 //Default SPI chip/slave select pin is D10
 /*
 // Need the following define for SAMD processors
@@ -19,24 +18,32 @@ SCL3300 inclinometer;
 void setup() {
   Serial.begin(115200);
   delay(2000); //SAMD boards may need a long time to init SerialUSB
-  Serial.println("Reading basic Tilt Level Offset values from SCL3300 Inclinometer");
+  Serial.println("Reading basic Tilt Level Offset values from SCL3400 Inclinometer");
 
   if (inclinometer.begin(5) == false) {
-    Serial.println("Murata SCL3300 inclinometer not connected.");
+    Serial.println("Murata SCL3400 inclinometer not connected.");
     while(1); //Freeze
   }
 }
 
 void loop() {
   if (inclinometer.available()) { //Get next block of data from sensor
+
     Serial.print("X Tilt: ");
-    Serial.print(inclinometer.getTiltLevelOffsetAngleX());
+    Serial.print(inclinometer.getCalculatedAccelerometerX());
     Serial.print("\t");
     Serial.print("Y Tilt: ");
-    Serial.print(inclinometer.getTiltLevelOffsetAngleY());
+    Serial.print(inclinometer.getCalculatedAccelerometerY());
+
+    Serial.print("\n");
+    Serial.print("X DEG:");
+    Serial.print(inclinometer.getCalculatedAngleX());
     Serial.print("\t");
-    Serial.print("Z Tilt: ");
-    Serial.println(inclinometer.getTiltLevelOffsetAngleZ());
-    delay(100); //Allow a little time to see the output
+    Serial.print("Y DEG:");
+    Serial.print(inclinometer.getCalculatedAngleY());
+    Serial.print("\n");
+    delay(1000); //Allow a little time to see the output
   } else inclinometer.reset();
+
+  delay(100);
 }
